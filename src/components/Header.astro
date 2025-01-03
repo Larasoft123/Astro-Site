@@ -1,0 +1,19 @@
+---
+import HeaderButton from "./HeaderButton.astro"
+---
+
+
+<header class="flex items-center justify-around text-white py-4 px-2 md:px-4 flex-col md:py-6 sm:flex-row flex-wrap"> 
+    <h1 class="text-4xl  font-bold">My Astro Site</h1>
+    <nav class="flex justify-around items-center sm:w-1/2 flex-col sm:flex-row flex-wrap w-full gap-3 mt-3 sm:m-0">
+        <HeaderButton text="Home" link="/"/>
+        <HeaderButton text="about" link="/about"/>
+        <HeaderButton text="blog" link="/blog"/>
+     
+       
+    </nav>
+</header>
+
+<style>
+
+</style>

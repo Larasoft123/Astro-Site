@@ -1,0 +1,56 @@
+---
+import Layout from "@layouts/Layout.astro";
+import {
+  getCharacters,
+} from "../../services/characters.ts";
+import {type Character} from "../../types/types.ts";
+
+export async function getStaticPaths() {
+  
+  
+  
+  const characters = await getCharacters();
+
+  
+
+
+return characters?.map((character: Character) => {
+    return {
+      params: {
+        id: character.id
+      },
+      props: {
+        character,
+      },
+    };
+  });
+
+}
+
+export const prerender = true
+
+const { character } = Astro.props as { character: Character };
+
+const {name,id, image,origin} = character;
+---
+
+<Layout>
+  <div class="grid grid-cols-1 md:grid-cols-2 relative p-5 justify-items-center">
+    <aside>
+      <a href="/">
+      <img transition:name={`img-${id}`} class="rounded hover:saturate-100 saturate-0 cursor-pointer" src={image} alt={name} />
+    </a>
+    </aside>
+
+    <div class="flex flex-col md:relative md:right-1/4">
+      <h2 class="text-2xl text-sky-400 text-balance">{name}</h2>
+      <p class="text-gray-400 text-wrap py-1 text-justify">Origin: {origin.name} </p>
+      
+    </div>
+  </div>
+</Layout>
+
+<style>
+
+ 
+</style>
